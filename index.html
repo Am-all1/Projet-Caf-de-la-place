@@ -34,7 +34,7 @@
             
             <!-- Modal body -->
             <div class="modal-body table-responsive-md" id="modalbodysim">
-               formulaire signature
+               
 
                <table id="dataTable" class="table table-image table-striped table-hover table-responsive-md">
                  <thead class="table-responsive-md">
@@ -57,13 +57,15 @@
                      <th>Prix de vente HT<input type="number" id="prixVenteHT" name="prixVenteHT" placeholder="Prix de vente HT"/> </th>
                      <th>Marge HT<input type="number" id="margeHT" name="margeHT"/></th>
                    </tr>
-                   <tr>  
+                 
                      <th>Prix de Vente TTC<input type="number" id="prixVenteTTC" name="prixVenteTTC"/></th> 
+                     <th>Degrés d'alcool<input type="number" id="degres" name="degres"/></th> 
+                       <tr>  
                      <th>Valider l'ajout au stock :<input type="submit" id="valider" value="Valider"></th>
                    </tr>
                    <tr>
-                     <input type="file" name="monfichier" id="files"accept="image/*">
-                     <input type="button" id="goqr" value="Generation et Impression QRCode" onclick='valideqr()' class="testqrcodese"/>
+                     
+                    <th> <input type="button" id="goqr" value="Generation et Impression QRCode" onclick='valideqr()' class="testqrcodese"/></th>
                    </tr>
                    </form>
                    
@@ -86,7 +88,7 @@
 
 
 
- <input id="qrcodeid" type="text" value="https://hogangnono.com" style="width:80%" /><br />
+ <input id="qrcodeid" type="text" value="https://hogangnono.com" style="display:none" /><br />
     <div id="qrcode"></div>
     
     
