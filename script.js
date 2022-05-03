@@ -67,15 +67,11 @@ function populateTableList() {
       
       <td class="w-10 align-middle"><button id="${tableau1.indexOf(
         ele
-      )}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer ${tableau1.indexOf(
-      ele
-    )}</button></td>
+      )}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer</button></td>
       
-    <td class="w-10 align-middle"><button id="${tableau1.indexOf(
+    <td class="w-5 align-middle"><button id="${tableau1.indexOf(
       ele
-    )}" class="btnModi" onclick='ModiTableList(${index})'>Modifier ${tableau1.indexOf(
-      ele
-    )}</button></td>
+    )}" class="btnModi" onclick='ModiTableList(${index})'>Modifier</button></td>
 
     </tr>
     `;
