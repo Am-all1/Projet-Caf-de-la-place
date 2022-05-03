@@ -27,8 +27,8 @@ let formulaire = document.getElementById("inscriptions");
 let formulaire1 = document.querySelector("inscriptions");
 let formulaireE = document.getElementById("inscriptionsedit");
 let qrcodejason = document.getElementById("qrcodeid");
-let typeselect = document.querySelector("Type");
-let degreealdisp = document.querySelector("degres");
+let typeselect = document.querySelector("#Type");
+let degreealdisp = document.querySelector("#degres");
 let tableaujson = [];
 
 // FONCTION BOUTON SUPPRIMER
@@ -107,16 +107,16 @@ function ModiButton1(ele, index) {
 
 // Création du prototype general PRODUIT
 
-function Produit(Type, nom, quantite, prixAchatHT, prixVenteHT, margeHT) {
+function Produit(Type, nom, quantite, prixAchatHT, prixVenteHT, margeHT, prixVenteTTC) {
   this.Type = Type;
   this.nom = nom;
   this.quantite = quantite;
   this.prixAchatHT = prixAchatHT;
   this.prixVenteHT = prixVenteHT;
   this.margeHT = margeHT;
-  this.prixVenteTTC = prixVenteHT;
+  this.prixVenteTTC = prixVenteTTC;
 
-  margeHT = prixVenteHT - prixAchatHT;
+  
 }
 
 // Création du prototype BOISSON ALCOOLISEE
@@ -247,8 +247,8 @@ document
     // Création de l'objet produit
     console.log(Type);
     if (Type == "alcool") {
-      let ventePrixTTC = prixVenteHT + (20 / 100) * prixVenteHT;
-
+      let prixVenteTTC = prixVenteHT * 1.2
+      
       let produit = new BoissonAlcoolisee(
         Type,
         nom,
@@ -256,14 +256,14 @@ document
         prixAchatHT,
         prixVenteHT,
         margeHT,
-        ventePrixTTC,
+        prixVenteTTC,
         degres
       );
       console.log("ligne 145", produit);
       tableau1.push(produit);
       alert("alcool");
     } else if (Type == "nonAlcool") {
-      let ventePrixTTC = prixVenteHT + (5.5 / 100) * prixVenteHT;
+      let prixVenteTTC = prixVenteHT * 1.055;
 
       let produit = new BoissonNonAlcoolisee(
         Type,
@@ -277,7 +277,7 @@ document
       tableau1.push(produit);
       alert("nonAlcool");
     } else if (Type == "autres") {
-      let ventePrixTTC = prixVenteHT + (20 / 100) * prixVenteHT;
+      let prixVenteTTC = prixVenteHT * 1.2
 
       let produit = new AutresChoix(
         Type,
