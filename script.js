@@ -1,5 +1,7 @@
 let tableau1;
 
+// SAUVEGARDE DU TABLEAU DANS LE LOCAL STORAGE
+
 function sauvJson() {
   let sensjson = JSON.stringify(tableau1);
   localStorage.setItem("jsontableau1", sensjson);
@@ -16,13 +18,20 @@ if (!localStorage.getItem("jsontableau1")) {
 
   tableau1 = localstorgeparse;
 }
+
+// IMPORTATION DES ELEMENTS
+
 let suprButton = document.querySelectorAll(".btnSupr");
 let ModiButton = document.querySelectorAll(".btnModi");
 let formulaire = document.getElementById("inscriptions");
 let formulaire1 = document.querySelector("inscriptions");
 let formulaireE = document.getElementById("inscriptionsedit");
 let qrcodejason = document.getElementById("qrcodeid");
+let typeselect = document.querySelector("Type");
+let degreealdisp = document.querySelector("degres");
 let tableaujson = [];
+
+// FONCTION BOUTON SUPPRIMER
 
 function suprButton1(ele, index) {
   suprButton = document.querySelectorAll(".btnSupr");
@@ -44,28 +53,25 @@ function populateTableList() {
   tableau1.map((ele, index) => {
     listOfName += ` 
     <tr class="text-center ">
-      <td class="w-25 align-middle" >${ele.Type}</td>      
-      <td class="w-25 align-middle">${ele.nom}</td>
-      <td class="w-25 align-middle">${ele.quantite}</td>
-      <td class="w-25 align-middle">${ele.prixAchatHT}</td>
-      <td class="w-25 align-middle">${ele.prixVenteHT}</td>
-      <td class="w-25 align-middle">${ele.margeHT}</td>
-      <td class="w-25 align-middle">${ele.prixVenteTTC}</td>
+      <td class="w-10 align-middle" >${ele.Type}</td>      
+      <td class="w-10 align-middle">${ele.nom}</td>
+      <td class="w-10 align-middle">${ele.quantite}</td>
+      <td class="w-10 align-middle">${ele.prixAchatHT}</td>
+      <td class="w-10 align-middle">${ele.prixVenteHT}</td>
+      <td class="w-10 align-middle">${ele.margeHT}</td>
+      <td class="w-10 align-middle">${ele.prixVenteTTC}</td>
       
-      <td class="w-25 align-middle" >${
+      <td class="w-10 align-middle" >${
         ele.Type == "alcool" ? ele.degres : ""
       }</th>
       
-      <td class="w-25 align-middle"><button id="${tableau1.indexOf(
+      <td class="w-10 align-middle"><button id="${tableau1.indexOf(
         ele
       )}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer ${tableau1.indexOf(
       ele
     )}</button></td>
-      <td class="w-25 align-middle"><div class="text-center buttonEditWrapper">
-      <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit"
-        >Edit</a>
-    </div></td>
-    <td class="w-25 align-middle"><button id="${tableau1.indexOf(
+      
+    <td class="w-10 align-middle"><button id="${tableau1.indexOf(
       ele
     )}" class="btnModi" onclick='ModiTableList(${index})'>Modifier ${tableau1.indexOf(
       ele
@@ -86,6 +92,9 @@ function SuprTableList(index) {
   tableau1.splice(index, 1);
   populateTableList();
 }
+
+// FONCTION BOUTON MODIFIER
+
 function ModiButton1(ele, index) {
   ModiButton = document.querySelectorAll(".btnModi");
 
@@ -102,12 +111,14 @@ function ModiButton1(ele, index) {
 
 // Création du prototype general PRODUIT
 
-function Produit(nom, quantite, prixAchatHT, prixVenteHT, margeHT) {
+function Produit(Type, nom, quantite, prixAchatHT, prixVenteHT, margeHT) {
+  this.Type = Type;
   this.nom = nom;
   this.quantite = quantite;
   this.prixAchatHT = prixAchatHT;
   this.prixVenteHT = prixVenteHT;
   this.margeHT = margeHT;
+  this.prixVenteTTC = prixVenteHT;
 
   margeHT = prixVenteHT - prixAchatHT;
 }
@@ -115,6 +126,7 @@ function Produit(nom, quantite, prixAchatHT, prixVenteHT, margeHT) {
 // Création du prototype BOISSON ALCOOLISEE
 
 function BoissonAlcoolisee(
+  Type,
   nom,
   quantite,
   prixAchatHT,
@@ -125,6 +137,7 @@ function BoissonAlcoolisee(
 ) {
   Produit.call(
     this,
+    Type,
     nom,
     quantite,
     prixAchatHT,
@@ -133,12 +146,12 @@ function BoissonAlcoolisee(
     prixVenteTTC
   );
   this.degres = degres;
-  this.prixVenteTTC = prixVenteHT + (20 / 100) * prixVenteHT;
 }
 
 // Création du prototype BOISSON NON ALCOOLISEE
 
 function BoissonNonAlcoolisee(
+  Type,
   nom,
   quantite,
   prixAchatHT,
@@ -148,6 +161,7 @@ function BoissonNonAlcoolisee(
 ) {
   Produit.call(
     this,
+    Type,
     nom,
     quantite,
     prixAchatHT,
@@ -155,12 +169,12 @@ function BoissonNonAlcoolisee(
     margeHT,
     prixVenteTTC
   );
-  this.prixVenteTTC = prixVenteHT + (5.5 / 100) * prixVenteHT;
 }
 
 // CREATION du prototype AUTRES
 
 function AutresChoix(
+  Type,
   nom,
   quantite,
   prixAchatHT,
@@ -170,6 +184,7 @@ function AutresChoix(
 ) {
   Produit.call(
     this,
+    Type,
     nom,
     quantite,
     prixAchatHT,
@@ -177,8 +192,9 @@ function AutresChoix(
     margeHT,
     prixVenteTTC
   );
-  this.prixVenteTTC = prixVenteHT + (10 / 100) * prixVenteHT;
 }
+
+// FONCTION QR CODE
 
 function valideqr() {
   alert("233");
@@ -223,6 +239,7 @@ document
 
     let formData = new FormData(formulaire);
 
+    let Type = formData.get("Type");
     let nom = formData.get("nom");
     let quantite = formData.get("quantite");
     let prixAchatHT = formData.get("prixAchatHT");
@@ -232,22 +249,28 @@ document
     let degres = formData.get("degres");
 
     // Création de l'objet produit
-    console.log(Type.value);
-    if (Type.value == "alcool") {
+    console.log(Type);
+    if (Type == "alcool") {
+      let ventePrixTTC = prixVenteHT + (20 / 100) * prixVenteHT;
+
       let produit = new BoissonAlcoolisee(
+        Type,
         nom,
         quantite,
         prixAchatHT,
         prixVenteHT,
         margeHT,
-        prixVenteTTC,
+        ventePrixTTC,
         degres
       );
       console.log("ligne 145", produit);
       tableau1.push(produit);
       alert("alcool");
     } else if (Type == "nonAlcool") {
+      let ventePrixTTC = prixVenteHT + (5.5 / 100) * prixVenteHT;
+
       let produit = new BoissonNonAlcoolisee(
+        Type,
         nom,
         quantite,
         prixAchatHT,
@@ -258,7 +281,10 @@ document
       tableau1.push(produit);
       alert("nonAlcool");
     } else if (Type == "autres") {
+      let ventePrixTTC = prixVenteHT + (20 / 100) * prixVenteHT;
+
       let produit = new AutresChoix(
+        Type,
         nom,
         quantite,
         prixAchatHT,
@@ -374,3 +400,12 @@ function ModiTableList(index) {
       $("#modalEdit").modal("hide");
     });
 }
+typeselect.addEventListener("change", function (e) {
+  if (e.target.value !== "alcool") {
+    degreealdisp.style.display = "none";
+    degreealdisp.value = "none";
+  } else if (e.target.value == "alcool") {
+    degreealdisp.style.display = "block";
+    degreealdisp.value = "";
+  }
+});

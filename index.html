@@ -18,10 +18,10 @@
       Creation Produit
  </button>
 
- <div class="text-center buttonEditWrapper">
+ <!-- <div class="text-center buttonEditWrapper">
   <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit"
     >Edit<i class="fas fa-pencil-square-o ml-1"></i></a>
-</div>
+</div> -->
 
     <div class="modal" id="myModal">
       <div class="modal-dialog modal-lg">
@@ -168,8 +168,9 @@ MODALE EDIT
           <div class="md-form mb-5">
             <form id ="inscriptionsedit">
               <th>Poste occupe<select id="Type" name="Type" onchange="mySpanT.innerHTML=this.value"> 
-                <option value="pro">Professionel</option>
-                <option value="parti">Particulier</option>
+                <option value="alcool">Boisson Alcoolisée</option>
+                <option value="nonAlcool">Boisson Non Alcoolisée</option>
+                <option value="autres">Autres</option>
               </select></th>
             </tr>
             <tr>
@@ -228,7 +229,7 @@ MODALE EDIT
     <thead class="thead-dark">
         <tr>
          
-      <th data-field="nom">Filtre</th>
+      
       <th data-field="Type" data-filter-control="select" data-sortable="true">Type de boissons </th>
       <!-- <th data-checkbox="true"></th> -->
       <th id ="nom" data-field="margeHT" data-filter-control="input" data-sortable="true" data-editable="true">Nom</th>
@@ -279,12 +280,12 @@ MODALE EDIT
           'table-danger',
         ]
     
-        if (row.price >= 10) {
+        if (row.quantite >= 10) {
           return {
             classes: 'table-success'
           }
         }
-        else if (row.price > 5 && row.price < 10) {
+        else if (row.quantite > 5 && row.price < 10) {
           return {
              classes: 'table-danger'
           }}
