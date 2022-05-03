@@ -28,41 +28,44 @@
          <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-               <h4 class="modal-title">Modal Heading 1234</h4>
+               <h4 class="modal-title">Création Produit</h4>
                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
             <!-- Modal body -->
             <div class="modal-body table-responsive-md" id="modalbodysim">
-               formulaire signature
+               
 
                <table id="dataTable" class="table table-image table-striped table-hover table-responsive-md">
                  <thead class="table-responsive-md">
                    <tr>
                      <form id ="inscriptions">
-                     <th>Poste occupe<select id="Type" name="Type" onchange="mySpanT.innerHTML=this.value"> 
-                       <option value="pro">Professionel</option>
-                       <option value="parti">Particulier</option>
+                     <th>Type de produit :<select id="Type" name="Type" onchange="mySpanT.innerHTML=this.value"> 
+                       <option value="pro">Boisson alcoolisée</option>
+                       <option value="parti">Boisson non-alcoolisée</option>
+                       <option value="parti">Autres</option>
                      </select></th>
                    </tr>
                    <tr>
-                     <th>Nom<input type="number" id="nom" name="nom" placeholder="dupont" onkeyup="mySpann.innerHTML=this.value"/></th>
-                     <th>prénom<input onkeyup="mySpanp.innerHTML=this.value" type="text" class="prenomi" id="prenomI" name="prenom" placeholder="pierre"/></th>
+                     <th>Nom produit<input type="text" id="nom" name="nom" placeholder="Nom du produit" /></th>
+                     <th>Quantité<input type="number" class="quantite" id="quantite" name="quantite" placeholder="Quantité"/></th>
                    </tr>
                    <tr>
-                     <th>mail<input type="text" id="mail" name="mail"placeholder="@" onkeyup="mySpanpm.innerHTML=this.value"/></th>                     
+                     <th>Prix d'achat HT<input type="number" id="prixAchatHT" name="prixAchatHT" placeholder="Prix d'achat HT"/></th>                     
                    </tr>
                    <tr>
-                     <th>tel fixe<input type="text" id="telfixe" name="telfixe" placeholder="060000" onkeyup="mySpanptf.innerHTML=this.value"/> </th>
-                     <th>tel portable<input type="number" id="telporta" name="telporta" placeholder="060000" onkeyup="mySpanptp.innerHTML=this.value"/></th>
+                     <th>Prix de vente HT<input type="number" id="prixVenteHT" name="prixVenteHT" placeholder="Prix de vente HT"/> </th>
+                     <th>Marge HT<input type="number" id="margeHT" name="margeHT"/></th>
                    </tr>
-                   <tr>  
-                     <th>Adresse<input type="text" id="Adresse" name="Adresse" placeholder="Adresse" onkeyup="mySpanpA.innerHTML=this.value"/></th> 
-                     <th>Action1<input type="submit" id="inscriptions" value="inscription"></th>
+                 
+                     <th>Prix de Vente TTC<input type="number" id="prixVenteTTC" name="prixVenteTTC"/></th> 
+                     <th>Degrés d'alcool<input type="number" id="degres" name="degres"/></th> 
+                       <tr>  
+                     <th>Valider l'ajout au stock :<input type="submit" id="valider" value="Valider"></th>
                    </tr>
                    <tr>
-                     <input type="file" name="monfichier" id="files"accept="image/*">
-                     <input type="button" id="goqr" value="Generation et Impression QRCode" onclick='valideqr()' class="testqrcodese"/>
+                     
+                    <th> <input type="button" id="goqr" value="Generation et Impression QRCode" onclick='valideqr()' class="testqrcodese"/></th>
                    </tr>
                    </form>
                    
@@ -85,7 +88,7 @@
 
 
 
- <input id="qrcodeid" type="text" value="https://hogangnono.com" style="width:80%" /><br />
+ <input id="qrcodeid" type="text" value="https://hogangnono.com" style="display:none" /><br />
     <div id="qrcode"></div>
     
     
