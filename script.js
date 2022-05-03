@@ -403,3 +403,12 @@ typeselect.addEventListener("change", function (e) {
     degreealdisp.value = "";
   }
 });
+function somme(){
+  var nbr1, nbr2, sum;
+  nbr1 = Number(document.getElementById("prixVenteHT").value);
+  nbr2 = Number(document.getElementById("prixAchatHT").value);
+  sum = nbr1 - nbr2;
+  document.getElementById("margeHT").value = sum;
+  nbr1.addEventListener("keyup",alert("coucou"))
+  nbr2.addEventListener("keyup",alert("coucou"))
+}
