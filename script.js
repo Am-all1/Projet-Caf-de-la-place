@@ -45,18 +45,17 @@ function populateTableList() {
     listOfName += ` 
     <tr class="text-center ">
       <td class="w-25 align-middle" >${ele.Type}</td>      
-      <td class="w-25 align-middle">${ele.prenom}</td>
       <td class="w-25 align-middle">${ele.nom}</td>
-      <td class="w-25 align-middle">${ele.mail}</td>
-      <td class="w-25 align-middle"><input type="text" id="telT" name="tel" placeholder="060000" value="${
-        ele.tel
-      }"/></td>
+      <td class="w-25 align-middle">${ele.quantite}</td>
+      <td class="w-25 align-middle">${ele.prixAchatHT}</td>
+      <td class="w-25 align-middle">${ele.prixVenteHT}</td>
+      <td class="w-25 align-middle">${ele.margeHT}</td>
+      <td class="w-25 align-middle">${ele.prixVenteTTC}</td>
+      
       <td class="w-25 align-middle" >${
-        ele.Type == "Porfessionel" ? "" : ele.adressepostale
+        ele.Type == "alcool" ? ele.degres : ""
       }</th>
-      <td class="w-25 align-middle">${
-        ele.Type == "Personnel" ? "" : ele.NomEntreprise
-      }</th> 
+      
       <td class="w-25 align-middle"><button id="${tableau1.indexOf(
         ele
       )}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer ${tableau1.indexOf(
@@ -224,37 +223,54 @@ document
 
     let formData = new FormData(formulaire);
 
-    let mail = formData.get("mail");
     let nom = formData.get("nom");
-    let prenom = formData.get("prenom");
-    let tel = formData.get("tel");
-    let adressepostale = formData.get("Adresse");
-    let Type = formData.get("Type");
-    let NomEntreprise = formData.get("NomEntreprise");
+    let quantite = formData.get("quantite");
+    let prixAchatHT = formData.get("prixAchatHT");
+    let prixVenteHT = formData.get("prixVenteHT");
+    let margeHT = formData.get("margeHT");
+    let prixVenteTTC = formData.get("PrixVenteTTC");
+    let degres = formData.get("degres");
 
-    // Création de l'objet contact
-    if (Type == "pro") {
-      let contact = new PersonneProfessionel(
-        prenom,
+    // Création de l'objet produit
+    console.log(Type.value);
+    if (Type.value == "alcool") {
+      let produit = new BoissonAlcoolisee(
         nom,
-        mail,
-        tel,
-        NomEntreprise
+        quantite,
+        prixAchatHT,
+        prixVenteHT,
+        margeHT,
+        prixVenteTTC,
+        degres
       );
-      console.log("ligne 145", contact);
-      tableau1.push(contact);
-      alert("pro");
-    } else {
-      let contact = new PersonnePersonnel(
-        prenom,
+      console.log("ligne 145", produit);
+      tableau1.push(produit);
+      alert("alcool");
+    } else if (Type == "nonAlcool") {
+      let produit = new BoissonNonAlcoolisee(
         nom,
-        mail,
-        tel,
-        adressepostale
+        quantite,
+        prixAchatHT,
+        prixVenteHT,
+        margeHT,
+        prixVenteTTC
       );
-      tableau1.push(contact);
-    }
-    //  let contact= new PersonneGeneral(prenom,nom,mail,tel)
+      tableau1.push(produit);
+      alert("nonAlcool");
+    } else if (Type == "autres") {
+      let produit = new AutresChoix(
+        nom,
+        quantite,
+        prixAchatHT,
+        prixVenteHT,
+        margeHT,
+        prixVenteTTC
+      );
+      tableau1.push(produit);
+      alert("autres");
+    } else alert("coucou");
+
+    //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
 
     populateTableList();
   });
@@ -329,9 +345,9 @@ function ModiTableList(index) {
       let Type = formData.get("Type");
       let NomEntreprise = formData.get("NomEntrepriseE");
 
-      // Création de l'objet contact
+      // Création de l'objet produit
       if (Type == "pro") {
-        let contact = new PersonneProfessionel(
+        let produit = new PersonneProfessionel(
           prenom,
           nom,
           mail,
@@ -339,23 +355,22 @@ function ModiTableList(index) {
           NomEntreprise
         );
         alert("245");
-        tableau1.splice(index, 0, contact);
+        tableau1.splice(index, 0, produit);
       } else {
         alert("248");
 
-        let contact = new PersonnePersonnel(
+        let produit = new PersonnePersonnel(
           prenom,
           nom,
           mail,
           tel,
           adressepostale
         );
-        tableau1.splice(index, 0, contact);
+        tableau1.splice(index, 0, produit);
       }
-      //  let contact= new PersonneGeneral(prenom,nom,mail,tel)
+      //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
 
       populateTableList();
       $("#modalEdit").modal("hide");
     });
 }
-
