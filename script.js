@@ -337,10 +337,9 @@ function ModiTableList(index) {
     (prixAchatHTMod1[0].value = tableau1[index].prixAchatHT),
     (prixVenteHTMod1[0].value = tableau1[index].prixVenteHT),
     (degresMod1[0].value = tableau1[index].degres),
-    tableau1.splice(index, 1);
+    console.log("341");
+  tableau1.splice(index, 1);
 
-  populateTableList();
-  console.log("341");
   // ----------------------------------------------------------------
   // json avec bouton go
   // let boutongo= document.getElementsByClassName("testqrcodese");
@@ -423,11 +422,11 @@ function ModiTableList(index) {
         );
       }
       //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
-
-      populateTableList();
       $("#modalEdit").modal("hide");
+      populateTableList();
     });
 }
+
 typeselect.addEventListener("change", function (e) {
   if (e.target.value !== "Alcoolisée") {
     degreealdisp.style.display = "none";
