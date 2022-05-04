@@ -424,7 +424,18 @@ typeselect.addEventListener("change", function (e) {
       opt.innerHTML = tableau1[i].nom;
       sel.appendChild(opt);
   }
+  var qtes = document.querySelector("#quantites");
   var qtev = document.querySelector("#quantitev"); 
-  qtev.value=tableau1[indexOf(sel.value)].quantite;
+  console.table(tableau1)
+  sel.addEventListener("change",function(e){
+var quantiteinp =  tableau1.filter(function(e) {
+  return e.nom == sel.value;})
+  qtes.value=quantiteinp[0].quantite
 
- 
+qtev.addEventListener("change",function(e){
+quantiteinp[0].quantite=quantiteinp[0].quantite-qtev.value
+console.table(tableau1);
+populateTableList();
+window.location.reload();
+})
+})
