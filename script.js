@@ -88,6 +88,7 @@ function populateTableList() {
 function SuprTableList(index) {
   console.log(index);
   tableau1.splice(index, 1);
+  window.location.reload();
   populateTableList();
 }
 
@@ -423,6 +424,7 @@ function ModiTableList(index) {
       }
       //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
       $("#modalEdit").modal("hide");
+      window.location.reload();
       populateTableList();
     });
 }
