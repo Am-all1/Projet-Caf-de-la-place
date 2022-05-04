@@ -85,7 +85,8 @@
 }
 
 #Simulation {
-  background-color: darkgray;
+    background: rgb(109,43,50);
+    background: linear-gradient(90deg, rgba(109,43,50,1) 6%, rgba(155,79,71,1) 41%, rgba(138,45,94,1) 79%, rgba(100,25,56,1) 100%);s
 }
 /* text-align:center;background-color: silver */
 
@@ -131,3 +132,14 @@ tr {
 #modalboutton {
   font-style: oblique;
 }
+.btn-secondary:hover {
+  color: #fff;
+  border-color: #565e64;
+  background: #9d0f2a;
+}
+/* .input-group:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #9d0f2a;
+} */
