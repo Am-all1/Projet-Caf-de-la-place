@@ -85,6 +85,49 @@
 }
 
 #Simulation {
-  background-color: slategrey;
+  background-color: darkgray;
 }
 /* text-align:center;background-color: silver */
+
+body {
+  background-image: url("/img\ 1.jpg");
+  background-attachment: fixed;
+  background-size: 100%;
+}
+
+.h4 {
+  font-size: calc(1.275rem + 0.3vw);
+  text-align: center;
+}
+
+.btn-danger {
+  color: whitesmoke;
+  background-color: #dc354587;
+  border-color: #f9fafb;
+  border-width: 4px;
+  padding-left: 20%;
+  text-align: center;
+  border-style: revert;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #2c3a4f;
+  border-color: rgba(245, 245, 245, 0.667);
+}
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-color: #853e16;
+  border-style: inset;
+  border-width: 1.1px;
+}
+
+#modalbutton {
+  font-style: oblique;
+}
+#modalboutton {
+  font-style: oblique;
+}
