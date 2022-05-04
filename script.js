@@ -100,10 +100,9 @@ function ModiButton1(ele, index) {
   ModiButton.forEach((ele, index) =>
     ele.addEventListener("click", function (ele) {
       $("#modalEdit").modal("show");
-      alert(ele);
+
       populateTableList();
       //  suprButton = document.querySelectorAll(".btnSupr");
-      alert("fonction modibutton1 327");
     })
   );
 }
@@ -202,7 +201,6 @@ function AutresChoix(
 // FONCTION QR CODE
 
 function valideqr() {
-  alert("233");
   tableaujson.push(
     formulaire[2].value,
     formulaire[3].value,
@@ -219,7 +217,7 @@ function valideqr() {
   // )
 
   let jsonqrcode = JSON.stringify(tableaujson);
-  alert(jsonqrcode);
+
   qrcodejason.value = jsonqrcode;
   makeCode();
 
@@ -240,7 +238,6 @@ document
   .getElementById("inscriptions")
   .addEventListener("submit", function (e) {
     e.preventDefault();
-    alert("formulaire envoyé129");
 
     let formData = new FormData(formulaire);
 
@@ -270,7 +267,6 @@ document
       );
       console.log("ligne 145", produit);
       tableau1.push(produit);
-      alert("Alcoolisée");
     } else if (Type == "Non Alcoolisée") {
       let prixVenteTTC = prixVenteHT * 1.055;
 
@@ -284,7 +280,6 @@ document
         prixVenteTTC
       );
       tableau1.push(produit);
-      alert("Non Alcoolisée");
     } else if (Type == "autres") {
       let prixVenteTTC = prixVenteHT * 1.2;
 
@@ -298,35 +293,16 @@ document
         prixVenteTTC
       );
       tableau1.push(produit);
-      alert("autres");
-    } else alert("coucou");
+    }
 
     //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
-    window.location.reload();
+    else window.location.reload();
     populateTableList();
   });
-
-// ---------------------------------------------------------------------------------------------------------------------------
-//<button id="${tableau1.indexOf(ele)}" class="btnModi" onclick='ModiTableList(${index})'>Modifier ${tableau1.indexOf(ele)}</button>
-
-// <div class="modal-footer d-flex justify-content-center editInsideWrapper">
-//           <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
-//             form
-//             <i class="fas fa-paper-plane-o ml-1"></i>
-//           </button>
-
-// </div>
-//  bouton modal edit pour inserer au dessus
-// -------------------------------------------------------------------------------------------------------------------
-
-// const index = tableau1.findIndex( () => btnSupr.onclick);
-// console.log(index);
 
 populateTableList();
 
 function ModiTableList(index) {
-  alert("functionmoditablelist 192");
-
   $("#modalEdit").modal("show");
   let nomMod1 = document.querySelectorAll("#nomMod");
   let quantiteMod1 = document.querySelectorAll("#quantiteMod");
@@ -341,30 +317,10 @@ function ModiTableList(index) {
     console.log("341");
   tableau1.splice(index, 1);
 
-  // ----------------------------------------------------------------
-  // json avec bouton go
-  // let boutongo= document.getElementsByClassName("testqrcodese");
-  //  boutongo.click(function() {
-
-  // alert ("click 168")
-  // //   alert(formulaire[2].values)
-
-  //      tableaujson.push(formulaire[2].value,formulaire[3].value,formulaire[4].value,formulaire[5].value,formulaire[6].value,formulaire[7].value,formulaire[8].value,)
-  //    alert(jsonqrcode)
-
-  //      let jsonqrcode = JSON.stringify(tableaujson) ;
-  //    let qrcodeid=document.getElementById("qrcodeid");
-  //    qrcodejason.value=jsonqrcode;
-  //   //  alert(jsonqrcode);
-  //   //  makeCode();
-  //  })
-  // -----------------------------------------------------------------------
-
   document
     .querySelector("#inscriptionsedit")
     .addEventListener("submit", function (e) {
       e.preventDefault();
-      alert("formulaire envoyé 217");
 
       let formData = new FormData(formulaireE);
 
@@ -394,7 +350,6 @@ function ModiTableList(index) {
         );
         console.log("ligne 145", produit);
         tableau1.splice(index, 0, produit);
-        alert("Alcoolisée");
       } else if (Type == "Non Alcoolisée") {
         let prixVenteTTC = prixVenteHT * 1.055;
 
@@ -408,7 +363,6 @@ function ModiTableList(index) {
           prixVenteTTC
         );
         tableau1.splice(index, 0, produit);
-        alert("Non Alcoolisée");
       } else if (Type == "autres") {
         let prixVenteTTC = prixVenteHT * 1.2;
 

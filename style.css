@@ -120,7 +120,7 @@ tfoot,
 th,
 thead,
 tr {
-  border-color:white;
+  border-color: white;
   border-style: inset;
   border-width: 1.1px;
 }
@@ -133,26 +133,21 @@ tr {
 }
 
 #table {
-
-  color:white;
-
-
+  color: white;
 }
 
 #modalboutton {
-
-background-color: black;
-
+  background-color: black;
 }
 
 .fixed-table-body {
-
-background-color: rgba(0, 0, 0, 0.57);
-
+  background-color: rgba(0, 0, 0, 0.57);
 }
 
 .fixed-table-body :hover {
+  color: white;
+}
 
- color:white;
-
+.modal-content {
+  text-align: left;
 }
