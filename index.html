@@ -62,14 +62,14 @@
                    <tr>
                      <form id ="inscriptions">
                      <th>Type de produit :<select id="Type" name="Type" onchange="mySpanT.innerHTML=this.value"> 
-                       <option value="alcool">Boisson alcoolisée</option>
-                       <option value="nonAlcool">Boisson non-alcoolisée</option>
-                       <option value="autres">Autres</option>
+                       <option value="Alcoolisée">Boisson alcoolisée</option>
+                       <option value="Non Alcoolisée">Boisson non-alcoolisée</option>
+                       <option value="Autres">Autres</option>
                      </select></th>
                    </tr>
                    <tr>
                      <th>Nom produit<input type="text" id="nom" name="nom" placeholder="Nom du produit" /></th>
-                     <th>Quantité<input type="number" class="quantite" id="quantite" name="quantite" placeholder="Quantité"/></th>
+                     <th>Quantité<input type="number" class="quantite" id="quantite" name="quantite" placeholder="Quantité" min="0"/></th>
                    </tr>
                    <!--chhf-->
                    <tr>
@@ -77,10 +77,10 @@
                    </tr>
                    <tr>
                      <th>Prix de vente HT<input type="number" id="prixVenteHT" name="prixVenteHT" placeholder="Prix de vente HT"/> </th>
-                     <th>Marge HT<input type="number" id="margeHT" name="margeHT"/></th>
+                     <th>Marge HT<input type="number" id="margeHT" name="margeHT" step="0.01"/></th>
                    </tr>
                  
-                     <th>Prix de Vente TTC<input type="number" id="prixVenteTTC" name="prixVenteTTC"/></th> 
+                     <th>Prix de Vente TTC<input type="number" id="prixVenteTTC" name="prixVenteTTC" step="0.01"/></th> 
                      <th>Degrés d'alcool<input type="number" id="degres" name="degres"/></th> 
                        <tr>  
                      <th>Valider l'ajout au stock :<input type="submit" id="valider" value="Valider"></th>
@@ -185,7 +185,7 @@ MODALE EDIT
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
+          <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Modification</h4>
           <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -193,30 +193,38 @@ MODALE EDIT
         <div class="modal-body mx-3">
           <div class="md-form mb-5">
             <form id ="inscriptionsedit">
-              <th>Poste occupe<select id="Type" name="Type" onchange="mySpanT.innerHTML=this.value"> 
-                <option value="alcool">Boisson Alcoolisée</option>
-                <option value="nonAlcool">Boisson Non Alcoolisée</option>
-                <option value="autres">Autres</option>
+
+
+              <th>Catégorie de boisson : <select id="Type" name="Type" onchange="mySpanT.innerHTML=this.value"> 
+                <option value="Alcoolisée">Boisson Alcoolisée</option>
+                <option value="Non Alcoolisée">Boisson Non Alcoolisée</option>
+                <option value="Autres">Autres</option>
               </select></th>
+
+              <br/>
+            
+            <tr>
+              <th>Nom <input type="text" id="nomMod" name="nomX" placeholder="Nom"/></th>
+              <br/>
+              <th>Quantité <input value=$ type="number" class="quantitei" id="quantiteMod" name="quantiteX" placeholder="Quantité"/></th>
             </tr>
             <tr>
-              <th>Nom<input type="number" id="nommod" name="nomE" placeholder="dupont"/></th>
-              <th>prénom<input value=${tableau1[index].nom} type="text" class="prenomi" id="prenommod" name="prenomE" placeholder="pierre"/></th>
+              <br/>
+              <th>Prix Achat HT <input type="text" id="prixAchatHTMod" name="prixAchatHTX"placeholder="Prix d'achat HT"/></th>                     
             </tr>
             <tr>
-              <th>mail<input type="text" id="mailmod" name="mailE"placeholder="@"/></th>                     
+              <br/>
+              <th>Prix Vente HT <input type="text" id="prixVenteHTMod" name="prixVenteHTX" placeholder="Prix de Vente HT" /> </th>
+              <br/>
+              <th>Degrés d'alcool <input type="text" id="degresMod" name="degresX" placeholder="Degrés d'alcool" /> </th>
             </tr>
+            <br/>
+            <br/>
+            <th><input type="submit" id="inscriptionsedit" value="Valider les modifications"></th>
+          
             <tr>
-              <th>tel fixe<input type="text" id="telmod" name="telfE" placeholder="060000" /> </th>
-              <th>Nom Entreprise<input type="text" id="NomEntreprisemod" name="NomEntrepriseE" placeholder="060000" /> </th>
-            </tr>
-            <tr>  
-              <th>Adresse<input type="text" id="Adressemod" name="AdresseE" placeholder="Adresse" onkeyup="mySpanpA.innerHTML=this.value"/></th> 
-              <th>Action1<input type="submit" id="inscriptionsedit" value="inscriptionsedit"></th>
-            </tr>
-            <tr>
-              <input type="file" name="monfichier" id="files"accept="image/*">
-              <input type="button" id="go"/>
+             
+              <!-- <input type="button" id="go"/> -->
             </tr>
             </form>
             
@@ -258,15 +266,15 @@ MODALE EDIT
       
       <th data-field="Type" data-filter-control="select" data-sortable="true">Type de boissons </th>
       <!-- <th data-checkbox="true"></th> -->
-      <th id ="nom" data-field="margeHT" data-filter-control="input" data-sortable="true" data-editable="true">Nom</th>
+      <th id ="nom" data-field="nom" data-filter-control="input" data-sortable="true" data-editable="true">Nom</th>
       <th id="quantite" data-field="quantite" data-filter-control="input" data-sortable="true" data-cell-style="cellStyle" data-editable="true">Quantité</th>
       <th id="prixachatht" data-field="prixAchatHT" data-filter-control="input" data-sortable="true" data-editable="true">Prix Achat HT</th>
       <th id ="prixVenteHT" data-field="prixVenteHT" data-filter-control="input" data-sortable="true" data-editable="true">Prix Vente HT</th>
-      <th id="margeHT"  data-filter-control="input" data-sortable="true">Marge HT</th>
+      <th id="margeHT" data-field="margeHT"  data-filter-control="input" data-sortable="true">Marge HT</th>
       <th id="prixVenteTTC" data-field="prixVenteTTC" data-filter-control="input" data-sortable="true">Prix Vente TTC</th>
       <th id="degres" data-field="degres" data-filter-control="input" data-sortable="true">Degrés d'alcool</th>
-      <th >Action1</th>
-      <th >modifier</th>
+      <th ></th>
+      <th ></th>
 
     </tr>
       </thead>
@@ -287,7 +295,7 @@ MODALE EDIT
          <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-               <h4 class="modal-title">Création Produit</h4>
+               <h4 class="modal-title">Vente Produit</h4>
                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
@@ -352,17 +360,23 @@ MODALE EDIT
     
         if (row.quantite >= 10) {
           return {
-            classes: 'table-success'
+             css: {
+            
+            background:'limegreen'
+      }
           }
         }
         else if (row.quantite > 5 && row.quantite < 10) {
           return {
-             classes: 'table-danger'
+              css: {
+            
+            background:'orange'
+      }
           }}
         return {
           css: {
             
-            background:'blue'
+            background:'red'
       }
         }
       }

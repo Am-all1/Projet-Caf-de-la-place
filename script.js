@@ -29,8 +29,8 @@ let formulaireE = document.getElementById("inscriptionsedit");
 let qrcodejason = document.getElementById("qrcodeid");
 let typeselect = document.querySelector("#Type");
 let degreealdisp = document.querySelector("#degres");
-let prixvhtM= document.querySelector("#prixVenteHT");
-let prixahtm=document.querySelector("#prixAchatHT")
+let prixvhtM = document.querySelector("#prixVenteHT");
+let prixahtm = document.querySelector("#prixAchatHT");
 let tableaujson = [];
 
 // FONCTION BOUTON SUPPRIMER
@@ -55,17 +55,23 @@ function populateTableList() {
   tableau1.map((ele, index) => {
     listOfName += ` 
     <tr class="text-center ">
-      <td class="w-10 align-middle" >${ele.Type}</td>      
-      <td class="w-10 align-middle">${ele.nom}</td>
-      <td class="w-10 align-middle">${ele.quantite}</td>
-      <td class="w-10 align-middle">${ele.prixAchatHT}</td>
-      <td class="w-10 align-middle">${ele.prixVenteHT}</td>
-      <td class="w-10 align-middle">${ele.margeHT}</td>
-      <td class="w-10 align-middle">${ele.prixVenteTTC}</td>
-      <td class="w-10 align-middle" >${ele.Type == "alcool" ? ele.degres : ""}</td>
+      <td class="w-8 align-middle" >${ele.Type}</td>      
+      <td class="w-8 align-middle">${ele.nom}</td>
+      <td class="w-8 align-middle">${ele.quantite}</td>
+      <td class="w-8 align-middle">${ele.prixAchatHT}</td>
+      <td class="w-8 align-middle">${ele.prixVenteHT}</td>
+      <td class="w-4 align-middle">${ele.margeHT}</td>
+      <td class="w-4 align-middle">${ele.prixVenteTTC}</td>
+      <td class="w-4 align-middle" >${
+        ele.Type == "Alcoolisée" ? ele.degres : ""
+      }</td>
       
-      <td><button id="${tableau1.indexOf(ele)}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer ${tableau1.indexOf(ele)}</button></td>
-    <td><button id="${tableau1.indexOf(ele)}" class="btnModi" onclick='ModiTableList(${index})'>Modifier ${tableau1.indexOf(ele)}</button></td>
+      <td><button id="${tableau1.indexOf(
+        ele
+      )}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer</button></td>
+    <td><button id="${tableau1.indexOf(
+      ele
+    )}" class="btnModi" onclick='ModiTableList(${index})'>Modifier</button></td>
 
 
     </tr>
@@ -103,7 +109,15 @@ function ModiButton1(ele, index) {
 
 // Création du prototype general PRODUIT
 
-function Produit(Type, nom, quantite, prixAchatHT, prixVenteHT, margeHT, prixVenteTTC) {
+function Produit(
+  Type,
+  nom,
+  quantite,
+  prixAchatHT,
+  prixVenteHT,
+  margeHT,
+  prixVenteTTC
+) {
   this.Type = Type;
   this.nom = nom;
   this.quantite = quantite;
@@ -111,8 +125,6 @@ function Produit(Type, nom, quantite, prixAchatHT, prixVenteHT, margeHT, prixVen
   this.prixVenteHT = prixVenteHT;
   this.margeHT = margeHT;
   this.prixVenteTTC = prixVenteTTC;
-
-  
 }
 
 // Création du prototype BOISSON ALCOOLISEE
@@ -236,15 +248,15 @@ document
     let quantite = formData.get("quantite");
     let prixAchatHT = formData.get("prixAchatHT");
     let prixVenteHT = formData.get("prixVenteHT");
-    let margeHT = prixVenteHT-prixAchatHT;
+    let margeHT = prixVenteHT - prixAchatHT;
     let prixVenteTTC = formData.get("PrixVenteTTC");
     let degres = formData.get("degres");
 
     // Création de l'objet produit
     console.log(Type);
-    if (Type == "alcool") {
-      let prixVenteTTC = prixVenteHT * 1.2
-      
+    if (Type == "Alcoolisée") {
+      let prixVenteTTC = prixVenteHT * 1.2;
+
       let produit = new BoissonAlcoolisee(
         Type,
         nom,
@@ -257,8 +269,8 @@ document
       );
       console.log("ligne 145", produit);
       tableau1.push(produit);
-      alert("alcool");
-    } else if (Type == "nonAlcool") {
+      alert("Alcoolisée");
+    } else if (Type == "Non Alcoolisée") {
       let prixVenteTTC = prixVenteHT * 1.055;
 
       let produit = new BoissonNonAlcoolisee(
@@ -271,9 +283,9 @@ document
         prixVenteTTC
       );
       tableau1.push(produit);
-      alert("nonAlcool");
+      alert("Non Alcoolisée");
     } else if (Type == "autres") {
-      let prixVenteTTC = prixVenteHT * 1.2
+      let prixVenteTTC = prixVenteHT * 1.2;
 
       let produit = new AutresChoix(
         Type,
@@ -289,7 +301,7 @@ document
     } else alert("coucou");
 
     //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
-
+    window.location.reload();
     populateTableList();
   });
 
@@ -313,20 +325,20 @@ populateTableList();
 
 function ModiTableList(index) {
   alert("functionmoditablelist 192");
-  alert(tableau1[index].prenom);
+
   $("#modalEdit").modal("show");
-  let prenommod1 = document.querySelectorAll("#prenommod");
-  let mailmod1 = document.querySelectorAll("#mailmod");
-  let nommod1 = document.querySelectorAll("#nommod");
-  let telmod1 = document.querySelectorAll("#telmod");
-  let NomEntreprisemod1 = document.querySelectorAll("#NomEntreprisemod");
-  (prenommod1[0].value = tableau1[index].prenom),
-    (mailmod1[0].value = tableau1[index].mail),
-    (nommod1[0].value = tableau1[index].nom),
-    (telmod1[0].value = tableau1[index].tel),
-    (NomEntreprisemod1[0].value = tableau1[index].NomEntreprise),
-    tableau1.splice(index, 1);
-  populateTableList();
+  let nomMod1 = document.querySelectorAll("#nomMod");
+  let quantiteMod1 = document.querySelectorAll("#quantiteMod");
+  let prixAchatHTMod1 = document.querySelectorAll("#prixAchatHTMod");
+  let prixVenteHTMod1 = document.querySelectorAll("#prixVenteHTMod");
+  let degresMod1 = document.querySelectorAll("#degresMod");
+  (nomMod1[0].value = tableau1[index].nom),
+    (quantiteMod1[0].value = tableau1[index].quantite),
+    (prixAchatHTMod1[0].value = tableau1[index].prixAchatHT),
+    (prixVenteHTMod1[0].value = tableau1[index].prixVenteHT),
+    (degresMod1[0].value = tableau1[index].degres),
+    console.log("341");
+  tableau1.splice(index, 1);
 
   // ----------------------------------------------------------------
   // json avec bouton go
@@ -348,94 +360,120 @@ function ModiTableList(index) {
   // -----------------------------------------------------------------------
 
   document
-    .getElementById("inscriptionsedit")
+    .querySelector("#inscriptionsedit")
     .addEventListener("submit", function (e) {
       e.preventDefault();
       alert("formulaire envoyé 217");
 
       let formData = new FormData(formulaireE);
 
-      let mail = formData.get("mailE");
-      let nom = formData.get("nomE");
-      let prenom = formData.get("prenomE");
-      let tel = formData.get("telE");
-      let adressepostale = formData.get("AdresseE");
       let Type = formData.get("Type");
-      let NomEntreprise = formData.get("NomEntrepriseE");
+      let nom = formData.get("nomX");
+      let quantite = formData.get("quantiteX");
+      let prixAchatHT = formData.get("prixAchatHTX");
+      let prixVenteHT = formData.get("prixVenteHTX");
+      let margeHT = prixVenteHT - prixAchatHT;
+      let prixVenteTTC;
+      let degres = formData.get("degresX");
 
       // Création de l'objet produit
-      if (Type == "pro") {
-        let produit = new PersonneProfessionel(
-          prenom,
-          nom,
-          mail,
-          tel,
-          NomEntreprise
-        );
-        alert("245");
-        tableau1.splice(index, 0, produit);
-      } else {
-        alert("248");
+      console.log(Type);
+      if (Type == "Alcoolisée") {
+        let prixVenteTTC = prixVenteHT * 1.2;
 
-        let produit = new PersonnePersonnel(
-          prenom,
+        let produit = new BoissonAlcoolisee(
+          Type,
           nom,
-          mail,
-          tel,
-          adressepostale
+          quantite,
+          prixAchatHT,
+          prixVenteHT,
+          margeHT,
+          prixVenteTTC,
+          degres
+        );
+        console.log("ligne 145", produit);
+        tableau1.splice(index, 0, produit);
+        alert("Alcoolisée");
+      } else if (Type == "Non Alcoolisée") {
+        let prixVenteTTC = prixVenteHT * 1.055;
+
+        let produit = new BoissonNonAlcoolisee(
+          Type,
+          nom,
+          quantite,
+          prixAchatHT,
+          prixVenteHT,
+          margeHT,
+          prixVenteTTC
         );
         tableau1.splice(index, 0, produit);
+        alert("Non Alcoolisée");
+      } else if (Type == "autres") {
+        let prixVenteTTC = prixVenteHT * 1.2;
+
+        let produit = new AutresChoix(
+          Type,
+          nom,
+          quantite,
+          prixAchatHT,
+          prixVenteHT,
+          margeHT,
+          prixVenteTTC
+        );
       }
       //  let produit= new PersonneGeneral(prenom,nom,mail,tel)
-
-      populateTableList();
       $("#modalEdit").modal("hide");
+      populateTableList();
     });
 }
+
 typeselect.addEventListener("change", function (e) {
-  if (e.target.value !== "alcool") {
+  if (e.target.value !== "Alcoolisée") {
     degreealdisp.style.display = "none";
     degreealdisp.value = "none";
-  } else if (e.target.value == "alcool") {
+  } else if (e.target.value == "Alcoolisée") {
     degreealdisp.style.display = "block";
     degreealdisp.value = "";
   }
 });
 
-
-
-  prixahtm.addEventListener("change",function(e){document.querySelector("#margeHT").value=prixvhtM.value-prixahtm.value});
-  prixvhtM.addEventListener("change",function(e){
-    document.querySelector("#margeHT").value=prixvhtM.value-prixahtm.value;
-    if (typeselect.value=="alcool"){document.querySelector("#prixVenteTTC").value=prixvhtM.value*1.2}
-    else if(typeselect.value=="nonAlcool"){document.querySelector("#prixVenteTTC").value=prixvhtM.value*1.055}
-    else{document.querySelector("#prixVenteTTC").value=prixvhtM.value*1.1}
-    
-  });
+prixahtm.addEventListener("change", function (e) {
+  document.querySelector("#margeHT").value = prixvhtM.value - prixahtm.value;
+});
+prixvhtM.addEventListener("change", function (e) {
+  document.querySelector("#margeHT").value = prixvhtM.value - prixahtm.value;
+  if (typeselect.value == "Alcoolisée") {
+    document.querySelector("#prixVenteTTC").value = prixvhtM.value * 1.2;
+  } else if (typeselect.value == "Non Alcoolisée") {
+    document.querySelector("#prixVenteTTC").value = prixvhtM.value * 1.055;
+  } else {
+    document.querySelector("#prixVenteTTC").value = prixvhtM.value * 1.1;
+  }
+});
 
 //vente
-  var sel = document.querySelector("#listeproduitvente");
-  var opt = null;
-  
-  for(i = 0; i<tableau1.length; i++) { 
-  
-      opt = document.createElement('option');
-      opt.value = tableau1[i].nom;
-      opt.innerHTML = tableau1[i].nom;
-      sel.appendChild(opt);
-  }
-  var qtes = document.querySelector("#quantites");
-  var qtev = document.querySelector("#quantitev"); 
-  console.table(tableau1)
-  sel.addEventListener("change",function(e){
-var quantiteinp =  tableau1.filter(function(e) {
-  return e.nom == sel.value;})
-  qtes.value=quantiteinp[0].quantite
+var sel = document.querySelector("#listeproduitvente");
+var opt = null;
 
-qtev.addEventListener("change",function(e){
-quantiteinp[0].quantite=quantiteinp[0].quantite-qtev.value
+for (i = 0; i < tableau1.length; i++) {
+  opt = document.createElement("option");
+  opt.value = tableau1[i].nom;
+  opt.innerHTML = tableau1[i].nom;
+  sel.appendChild(opt);
+}
+var qtes = document.querySelector("#quantites");
+var qtev = document.querySelector("#quantitev");
 console.table(tableau1);
-populateTableList();
-window.location.reload();
-})
-})
+sel.addEventListener("change", function (e) {
+  var quantiteinp = tableau1.filter(function (e) {
+    return e.nom == sel.value;
+  });
+  qtes.value = quantiteinp[0].quantite;
+
+  qtev.addEventListener("change", function (e) {
+    quantiteinp[0].quantite = quantiteinp[0].quantite - qtev.value;
+    console.table(tableau1);
+    populateTableList();
+    window.location.reload();
+  });
+});
