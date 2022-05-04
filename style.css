@@ -85,7 +85,14 @@
 }
 
 #Simulation {
-  background-color: darkgray;
+  background: rgb(109, 43, 50);
+  background: linear-gradient(
+    90deg,
+    rgba(109, 43, 50, 1) 6%,
+    rgba(155, 79, 71, 1) 41%,
+    rgba(138, 45, 94, 1) 79%,
+    rgba(100, 25, 56, 1) 100%
+  );
 }
 /* text-align:center;background-color: silver */
 

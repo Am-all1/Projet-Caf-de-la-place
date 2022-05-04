@@ -123,7 +123,7 @@ function makeCode () {
   var elText = document.getElementById("qrcodeid");
   
   if (!elText.value) {
-    alert("Input a text");
+    
     elText.focus();
     return;
   }
@@ -239,6 +239,7 @@ $("#qrcodeid").
    
    <table data-toggle="table"
     id="table"
+    style="background-color: rgba(0, 0, 0, 0.438);"
     data-row-style="rowStyle"
     data-show-columns="true"
     data-key-events="true"
@@ -250,7 +251,7 @@ $("#qrcodeid").
    
     data-show-search-clear-button="true"
     class="table">
-    <thead class="thead-dark">
+    <thead class="thead-dark" style="text-align: center">
         <tr>
          
       
