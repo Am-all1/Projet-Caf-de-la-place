@@ -90,7 +90,7 @@
 /* text-align:center;background-color: silver */
 
 body {
-  background-image: url("/img\ 1.jpg");
+  background-image: url(./img1.jpg);
   background-attachment: fixed;
   background-size: 100%;
 }
@@ -102,7 +102,7 @@ body {
 
 .btn-danger {
   color: whitesmoke;
-  background-color: #dc354587;
+  background-color: white;
   border-color: #f9fafb;
   border-width: 4px;
   padding-left: 20%;
@@ -120,7 +120,7 @@ tfoot,
 th,
 thead,
 tr {
-  border-color: #853e16;
+  border-color:white;
   border-style: inset;
   border-width: 1.1px;
 }
@@ -130,4 +130,29 @@ tr {
 }
 #modalboutton {
   font-style: oblique;
+}
+
+#table {
+
+  color:white;
+
+
+}
+
+#modalboutton {
+
+background-color: black;
+
+}
+
+.fixed-table-body {
+
+background-color: rgba(0, 0, 0, 0.57);
+
+}
+
+.fixed-table-body :hover {
+
+ color:white;
+
 }
