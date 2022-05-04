@@ -29,6 +29,8 @@ let formulaireE = document.getElementById("inscriptionsedit");
 let qrcodejason = document.getElementById("qrcodeid");
 let typeselect = document.querySelector("#Type");
 let degreealdisp = document.querySelector("#degres");
+let prixvhtM= document.querySelector("#prixVenteHT");
+let prixahtm=document.querySelector("#prixAchatHT")
 let tableaujson = [];
 
 // FONCTION BOUTON SUPPRIMER
@@ -60,20 +62,14 @@ function populateTableList() {
       <td class="w-10 align-middle">${ele.prixVenteHT}</td>
       <td class="w-10 align-middle">${ele.margeHT}</td>
       <td class="w-10 align-middle">${ele.prixVenteTTC}</td>
+      <td class="w-10 align-middle" >${ele.Type == "alcool" ? ele.degres : ""}</td>
       
-      <td class="w-10 align-middle" >${
-        ele.Type == "alcool" ? ele.degres : ""
-      }</th>
-      
-      <td class="w-10 align-middle"><button id="${tableau1.indexOf(
-        ele
-      )}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer</button></td>
-      
-    <td class="w-5 align-middle"><button id="${tableau1.indexOf(
-      ele
-    )}" class="btnModi" onclick='ModiTableList(${index})'>Modifier</button></td>
+      <td><button id="${tableau1.indexOf(ele)}" class="btnSupr" onclick='SuprTableList(${index})'>Suprimer ${tableau1.indexOf(ele)}</button></td>
+    <td><button id="${tableau1.indexOf(ele)}" class="btnModi" onclick='ModiTableList(${index})'>Modifier ${tableau1.indexOf(ele)}</button></td>
+
 
     </tr>
+      
     `;
   });
 
@@ -240,7 +236,7 @@ document
     let quantite = formData.get("quantite");
     let prixAchatHT = formData.get("prixAchatHT");
     let prixVenteHT = formData.get("prixVenteHT");
-    let margeHT = formData.get("margeHT");
+    let margeHT = prixVenteHT-prixAchatHT;
     let prixVenteTTC = formData.get("PrixVenteTTC");
     let degres = formData.get("degres");
 
@@ -405,3 +401,41 @@ typeselect.addEventListener("change", function (e) {
     degreealdisp.value = "";
   }
 });
+
+
+
+  prixahtm.addEventListener("change",function(e){document.querySelector("#margeHT").value=prixvhtM.value-prixahtm.value});
+  prixvhtM.addEventListener("change",function(e){
+    document.querySelector("#margeHT").value=prixvhtM.value-prixahtm.value;
+    if (typeselect.value=="alcool"){document.querySelector("#prixVenteTTC").value=prixvhtM.value*1.2}
+    else if(typeselect.value=="nonAlcool"){document.querySelector("#prixVenteTTC").value=prixvhtM.value*1.055}
+    else{document.querySelector("#prixVenteTTC").value=prixvhtM.value*1.1}
+    
+  });
+
+//vente
+  var sel = document.querySelector("#listeproduitvente");
+  var opt = null;
+  
+  for(i = 0; i<tableau1.length; i++) { 
+  
+      opt = document.createElement('option');
+      opt.value = tableau1[i].nom;
+      opt.innerHTML = tableau1[i].nom;
+      sel.appendChild(opt);
+  }
+  var qtes = document.querySelector("#quantites");
+  var qtev = document.querySelector("#quantitev"); 
+  console.table(tableau1)
+  sel.addEventListener("change",function(e){
+var quantiteinp =  tableau1.filter(function(e) {
+  return e.nom == sel.value;})
+  qtes.value=quantiteinp[0].quantite
+
+qtev.addEventListener("change",function(e){
+quantiteinp[0].quantite=quantiteinp[0].quantite-qtev.value
+console.table(tableau1);
+populateTableList();
+window.location.reload();
+})
+})

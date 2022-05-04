@@ -18,6 +18,10 @@
       Creation Produit
  </button>
 
+ <button type="button" id="modalboutton" class="btn btn-primary" data-toggle="modal" data-target="#Modalvente" >
+  Vente produit
+</button>
+
  <!-- <div class="text-center buttonEditWrapper">
   <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit"
     >Edit<i class="fas fa-pencil-square-o ml-1"></i></a>
@@ -236,10 +240,11 @@ MODALE EDIT
       <th id="quantite" data-field="quantite" data-filter-control="input" data-sortable="true" data-cell-style="cellStyle" data-editable="true">Quantité</th>
       <th id="prixachatht" data-field="prixAchatHT" data-filter-control="input" data-sortable="true" data-editable="true">Prix Achat HT</th>
       <th id ="prixVenteHT" data-field="prixVenteHT" data-filter-control="input" data-sortable="true" data-editable="true">Prix Vente HT</th>
-      <th id="margeHT" data-field="margeHT" data-filter-control="input" data-sortable="true">Marge HT</th>
+      <th id="margeHT"  data-filter-control="input" data-sortable="true">Marge HT</th>
       <th id="prixVenteTTC" data-field="prixVenteTTC" data-filter-control="input" data-sortable="true">Prix Vente TTC</th>
       <th id="degres" data-field="degres" data-filter-control="input" data-sortable="true">Degrés d'alcool</th>
-      
+      <th >Action1</th>
+      <th >modifier</th>
 
     </tr>
       </thead>
@@ -253,6 +258,49 @@ MODALE EDIT
         
       </tbody>
     </table>
+
+
+    <div class="modal" id="Modalvente">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Création Produit</h4>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body table-responsive-md" id="modalbodyvente">
+               
+
+               <table id="dataTablevente" class="table table-image table-striped table-hover table-responsive-md">
+                 <thead class="table-responsive-md">
+                   <tr>
+                    <form id ="vente">
+                      <th>Produit vente<select id="listeproduitvente" name="listeproduitvente" >  
+                      </select></th>
+                    <th> Stock<input type="text" id="quantites" name="quantite" /> </th>
+                    <th> quantite vente<input type="number" id="quantitev" name="quantitev" /> </th>
+                    </form>
+                   
+                 </thead>
+         
+               </table>
+         
+                </div>
+             </div>
+
+                   <!-- <p id="NameList"> -->
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
